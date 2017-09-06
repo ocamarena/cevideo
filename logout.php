@@ -2,6 +2,6 @@
 session_start();
 session_destroy();
 echo '<script type="text/javascript">
-           window.location = "cevideo/index.php"
+           window.location = "index.php"
 		   </script>';
 ?>
