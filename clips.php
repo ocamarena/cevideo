@@ -67,16 +67,6 @@ if (isset($_POST['uploadvideo'])) {
 				echo "<script>Alert.render('Se ha subido el clip a \'$destname\'', '');</script>";
 			} else {
 				?><script>Alert.render('No se pudo subir el clip en el momento. Por favor intenta despues.', '');</script><?php
-				if (is_writable($path)) {
-						echo "writable";
-					} else {
-						echo "not writable";
-					}
-					if (file_exists($path)) {
-						echo "exists";
-					} else {
-						echo "does not exist";
-					}
 			}}
 		} else {
 			if (in_array("universal", $array)) {
