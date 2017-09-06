@@ -14,8 +14,8 @@ if (isset($_POST['uploadvideo'])) {
 	}
 	echo $array[0];
 	echo $array;*/
-	
-	
+
+
 	$name = $_FILES ['file'] ['name'];
 			$tmp_name = $_FILES ['file'] ['tmp_name'];
 			$num = count($_FILES['file']['name']);
@@ -23,8 +23,8 @@ if (isset($_POST['uploadvideo'])) {
 			$getext = explode('.' , $name);
 				$filename = $getext[0];
 				$extension = $getext[1];
-	
-	
+
+
 	//$username = $_SESSION['username'];
 			//include 'config.php';
 			//$sqlcode = "SELECT code FROM users WHERE username='$username'";
@@ -67,6 +67,16 @@ if (isset($_POST['uploadvideo'])) {
 				echo "<script>Alert.render('Se ha subido el clip a \'$destname\'', '');</script>";
 			} else {
 				?><script>Alert.render('No se pudo subir el clip en el momento. Por favor intenta despues.', '');</script><?php
+				if (is_writable($path)) {
+						echo "writable";
+					} else {
+						echo "not writable";
+					}
+					if (file_exists($path)) {
+						echo "exists";
+					} else {
+						echo "does not exist";
+					}
 			}}
 		} else {
 			if (in_array("universal", $array)) {
@@ -230,7 +240,7 @@ if (isset($_POST['uploadvideo'])) {
 					}
 				}
 			}
-			
+
 		}
 	}
 				?><script>Alert.render('Se ha subido <?php echo $name; ?>.<br><?php if (count($errors) >= 1) {
@@ -242,17 +252,17 @@ if (isset($_POST['uploadvideo'])) {
 						echo $error . ", ";
 						} else {
 							echo "y " . $error . ".";
-						}	
+						}
 						} else {
 							echo $error . ".";
 						}
-						
+
 					}
 					echo "<br><br>El clip ya existe en ese/esos directorio/s. Por favor intente con un nuevo nombre.";
 				}
 									   ?>', '');</script><?php
 			}
-		}		
+		}
 	} else {
 			?><script>Alert.render('Solo puedes subir un video a la vez.', '');</script><?php
 		}
@@ -265,7 +275,7 @@ if (isset($_POST['uploadvideo'])) {
 			} else {
 				?><script>Alert.render('No se pudo subir el video en el momento. Por favor intenta despues.', '');</script><?php
 			}
-				
+
 			}
 			} else {
 				?><script>Alert.render('Solo puedes subir un video a la vez.', '');</script><?php
@@ -307,7 +317,7 @@ if (isset($_POST['uploadvideo'])) {
 				}
 			}
 		}
-	
+
 ?>
 </div>
 	<div class="title"><a>City Express Suites</a></div>
@@ -323,7 +333,7 @@ if (isset($_POST['uploadvideo'])) {
 			echo '<input id="' . $rowgethcs['code'] . '" type="checkbox" name="destination[]" value="' . $rowgethcs['code'] . '"><label for="' . $rowgethcs['code'] . '">' . strtoupper($rowgethcs['code']) . '</label>';
 			}
 		}
-	
+
 ?>
 </div>
 	<div class="title"><a>City Express Junior</a></div>
@@ -336,10 +346,10 @@ if (isset($_POST['uploadvideo'])) {
 			$hotelcj = substr($rowgethcj['code'], 0, 2);
 			if ($hotelcj == "cj") {
 			//echo "<a href='index.php?page=hoteles&hotel=" . $rowgethcj['code'] . "'>" . strtoupper($rowgethcj['code']) . "</a>";
-			
+
 			echo '<input id="' . $rowgethcj['code'] . '" type="checkbox" name="destination[]" value="' . $rowgethcj['code'] . '"><label for="' . $rowgethcj['code'] . '">' . strtoupper($rowgethcj['code']) . '</label>';}
 		}
-	
+
 ?>
 </div>
 
@@ -353,10 +363,10 @@ if (isset($_POST['uploadvideo'])) {
 			$hotelcp = substr($rowgethcp['code'], 0, 2);
 			if ($hotelcp == "cp") {
 			//echo "<a href='index.php?page=hoteles&hotel=" . $rowgethcp['code'] . "'>" . strtoupper($rowgethcp['code']) . "</a>";
-			
+
 			echo '<input id="' . $rowgethcp['code'] . '" type="checkbox" name="destination[]" value="' . $rowgethcp['code'] . '"><label for="' . $rowgethcp['code'] . '">' . strtoupper($rowgethcp['code']) . '</label>';}
 		}
-	
+
 ?>
 </div>
 
@@ -373,10 +383,10 @@ if (isset($_POST['uploadvideo'])) {
 				echo '<input id="' . $rowgethcc['code'] . '" type="checkbox" name="destination[]" value="' . $rowgethcc['code'] . '"><label for="' . $rowgethcc['code'] . '">' . strtoupper($rowgethcc['code']) . '</label>';
 			}
 		}
-	
+
 ?>
 		</div></center>
-				
+
 					<center><input type="submit" name="uploadvideo" value="Subir Clip"></center>
 	</form>
 <script src="custom-file-input.js"></script>
