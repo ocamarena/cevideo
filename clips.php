@@ -54,10 +54,10 @@ if (isset($_POST['uploadvideo'])) {
 			$path = "videos/cc";
 				$destname = "City Centro";
 		} else {
-				$path = "/videos/$array[0]/coorporativo";
+				$path = "videos/$array[0]/coorporativo";
 				$destname = strtoupper($array[0]);
 				if (!file_exists($path)) {
-						mkdir($path, 0755, true);
+						mkdir($path, 0777, true);
 			}
 			}}
 			if (file_exists("$path/$name") or $name == "video.mp4") {
