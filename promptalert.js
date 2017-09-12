@@ -27,13 +27,14 @@ $resultgetpass = mysqli_query($db, $sqlgetpass);
 	}
 }
 ?>`;
-	  
+
 	dialogbox.innerHTML = `${php}<form action="" method="post"><div id='dialogboxhead'><img src='https://www.cityexpress.com/themes/city_express/images/favicons/favicon-114x114.png'></img></div>
 				<div id='dialogboxbody'>${dialog}
                 <br><center><input type="password" maxlength="36" name="prompt" placeholder="Contraseña" required /><input type="hidden" value="${idofuser}" name="id"></center></div>
 				<div id='dialogboxfoot'><div class='alertokbtn'><input type="submit" name="deleteuserprompt" value="Continuar"></div></div></form>`;
 
 	}
+  
 	/*this.ok = function(redirect){
 		document.getElementById('dialogbox').style.display = "none";
 		document.getElementById('dialogoverlay').style.display = "none";
