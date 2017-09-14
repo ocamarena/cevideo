@@ -1,28 +1,24 @@
 <?php
 if ($_SESSION['title'] == "Gerente" or $_SESSION['titledev'] == "Gerente") {
-?>
+    ?>
 <title>Video Manager | Mi Hotel</title>
 <center><div class="title"><a>Mi Hotel</a></div></center>
 <?php
 $username = $_SESSION['username'];
-			include 'config.php';
-			$sqlcode = "SELECT code FROM users WHERE username='$username'";
-			$resultcode = mysqli_query($db, $sqlcode);
-			$rowcode = mysqli_fetch_assoc($resultcode);
-	$code = $rowcode['code'];
-	
-	
-?><div class="videoinhotel"><?php
+    include 'config.php';
+    $sqlcode = "SELECT code FROM users WHERE username='$username'";
+    $resultcode = mysqli_query($db, $sqlcode);
+    $rowcode = mysqli_fetch_assoc($resultcode);
+    $code = $rowcode['code']; ?><div class="videoinhotel"><?php
 if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
-?>
+        ?>
 <center><video width="50%" height="auto" loop controls><source src="videos/<?php echo $rowcode['code']; ?>/video.mp4"></video></center>
 <?php
-	} else {
-	?>
+    } else {
+        ?>
 	<center><div class="fallbackvideo"><div class="fallbackvideoa"><a>No existe video</a></div><div class="fallbackvideoa"><a>para este hotel</a></div></div></center>
 	<?php
-}
-?>
+    } ?>
 </div>
 <center><div class="title"><a>Clips</a></div></center>
 <?php
@@ -34,115 +30,105 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
 ?>
 <div class="smallvideos"><div class="smallvideoc">
 <?php
-	if (isset($_POST['deletevideo'])) {
-		$nameofvideo = $_POST['video'];
-		$code1 = $_POST['code'];
-		unlink("videos/$code1/$nameofvideo");
-		?><script>Alert.render('Se ha eliminado <?php echo $nameofvideo; ?> permanentemente.', '');</script><?php
-	}
-	$hotel = substr($_SESSION['code'], 0, 2);
-	if ($hotel == "ce") {
-		$hotelname = "City Express Hoteles";
-	} else if($hotel == "cs") {
-		$hotelname = "City Express Suites";
-	} else if($hotel == "cj") {
-		$hotelname = "City Express Junior";
-	} else if($hotel == "cp") {
-		$hotelname = "City Express Plus";
-	} else if($hotel == "cc") {
-		$hotelname = "City Express Plus";
-	}
-	$noffiles2 = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-	$noffiles = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-	$nofhotel = count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-	$nofcoorp = count(glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-	$nuni = count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-	if ($noffiles2 >= 1) {
-		?><div class="subtitle"><a>Clips de Mi Hotel</a></div><?php
-		if ($noffiles >= 1) {
-	foreach(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
-		$nameoffile = basename($filename);
-		if ($nameoffile!='video.mp4') {
-			$code = $_SESSION['code'];
-		echo "<div class='smallvideo2'>
+    if (isset($_POST['deletevideo'])) {
+        $nameofvideo = $_POST['video'];
+        $code1 = $_POST['code'];
+        unlink("videos/$code1/$nameofvideo"); ?><script>Alert.render('Se ha eliminado <?php echo $nameofvideo; ?> permanentemente.', '');</script><?php
+    }
+    $hotel = substr($_SESSION['code'], 0, 2);
+    if ($hotel == "ce") {
+        $hotelname = "City Express Hoteles";
+    } elseif ($hotel == "cs") {
+        $hotelname = "City Express Suites";
+    } elseif ($hotel == "cj") {
+        $hotelname = "City Express Junior";
+    } elseif ($hotel == "cp") {
+        $hotelname = "City Express Plus";
+    } elseif ($hotel == "cc") {
+        $hotelname = "City Express Plus";
+    }
+    $noffiles2 = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    $noffiles = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    $nofhotel = count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    $nofcoorp = count(glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    $nuni = count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    if ($noffiles2 >= 1) {
+        ?><div class="subtitle"><a>Clips de Mi Hotel</a></div><?php
+        if ($noffiles >= 1) {
+            foreach (glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+                $nameoffile = basename($filename);
+                if ($nameoffile!='video.mp4') {
+                    $code = $_SESSION['code'];
+                    echo "<div class='smallvideo2'>
 		<video height='120px' width='215px' controls><source src='$filename'></video>
 		<div class='videotitle2'><a>$nameoffile</a></div>
 		<a href='' title='Eliminar $nameoffile'><form action='' method='post'><input type='hidden' name='video' value='$nameoffile'><input type='hidden' name='code' value='$code'><input name='deletevideo' type='submit' class='icon-remove' value='&#59650'></form></a>
 		</div><br>";
-		
-		}
-	}
-		} else {
-	?><center><div class="title"><a>No tienes clips para Tu Hotel</a></div></center><?php
-		}
-		
-		?><div class="subtitle"><a>Clips para Tu Hotel de Coorporativo</a></div><?php
-		if ($nofcoorp >= 1) {
-	foreach(glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
-		$nameoffile = basename($filename);
-		if ($nameoffile!='video.mp4') {
-			//$code = $_SESSION['code'];
-		echo "<div class='smallvideo2'>
+                }
+            }
+        } else {
+            ?><center><div class="title"><a>No tienes clips para Tu Hotel</a></div></center><?php
+        } ?><div class="subtitle"><a>Clips para Tu Hotel de Coorporativo</a></div><?php
+        if ($nofcoorp >= 1) {
+            foreach (glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+                $nameoffile = basename($filename);
+                if ($nameoffile!='video.mp4') {
+                    //$code = $_SESSION['code'];
+                    echo "<div class='smallvideo2'>
 		<video height='120px' width='215px' controls><source src='$filename'></video>
 		<div class='videotitle2'><a>$nameoffile</a></div>
-		
+
 		</div><br>";
-		
-		}
-	}
-		} else {
-	?><center><div class="title"><a>No existen clips para Tu Hotel de Coorporativo</a></div></center><?php
-		}
-		
-		?><div class="subtitle"><a>Clips de <?php echo $hotelname; ?></a></div><?php
-		if ($nofhotel >= 1) {
-	foreach(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
-		$nameoffile = basename($filename);
-		if ($nameoffile!='video.mp4') {
-			$code = $_SESSION['code'];
-		echo "<div class='smallvideo2'>
+                }
+            }
+        } else {
+            ?><center><div class="title"><a>No existen clips para Tu Hotel de Coorporativo</a></div></center><?php
+        } ?><div class="subtitle"><a>Clips de <?php echo $hotelname; ?></a></div><?php
+        if ($nofhotel >= 1) {
+            foreach (glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+                $nameoffile = basename($filename);
+                if ($nameoffile!='video.mp4') {
+                    $code = $_SESSION['code'];
+                    echo "<div class='smallvideo2'>
 		<video height='120px' width='215px' controls><source src='$filename'></video>
 		<div class='videotitle2'><a>$nameoffile</a></div>
-		
+
 		</div><br>";
-		
-		}
-	}
-		} else {
-	?><center><div class="title"><a>No existen clips para <?php echo $hotelname; ?></a></div></center><?php
-		}
-		?><div class="subtitle"><a>Clips Universales</a></div><?php
-		if ($nuni >= 1) {
-	foreach(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
-		$nameoffile = basename($filename);
-		if ($nameoffile!='video.mp4') {
-			$code = $_SESSION['code'];
-		echo "<div class='smallvideo2'>
+                }
+            }
+        } else {
+            ?><center><div class="title"><a>No existen clips para <?php echo $hotelname; ?></a></div></center><?php
+        } ?><div class="subtitle"><a>Clips Universales</a></div><?php
+        if ($nuni >= 1) {
+            foreach (glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+                $nameoffile = basename($filename);
+                if ($nameoffile!='video.mp4') {
+                    $code = $_SESSION['code'];
+                    echo "<div class='smallvideo2'>
 		<video height='120px' width='215px' controls><source src='$filename'></video>
 		<div class='videotitle2'><a>$nameoffile</a></div>
-		
+
 		</div><br>";
-		
-		}
-	}
-		} else {
-	?><center><div class="title"><a>No existen clips universales</a></div></center><?php
-		}
-	} else {
-		?><center><div class="fallbackvideo"><div class="fallbackvideoa"><a>No existen clips</a></div><div class="fallbackvideoa"><a>para este hotel</a></div></div></center><?php
-	}
-	
-	if (isset($_POST['genvideo'])) {
-		?><script>Alert.render('Se ha generado el video.', '');</script><?php
-	}
-	?></div><?php
-	if ($noffiles2 >= 1) {
-	?>
+                }
+            }
+        } else {
+            ?><center><div class="title"><a>No existen clips universales</a></div></center><?php
+        }
+    } else {
+        ?><center><div class="fallbackvideo"><div class="fallbackvideoa"><a>No existen clips</a></div><div class="fallbackvideoa"><a>para este hotel</a></div></div></center><?php
+    }
+
+    if (isset($_POST['genvideo'])) {
+        ?><script>Alert.render('Se ha generado el video.', '');</script><?php
+    } ?></div><?php
+    if ($noffiles2 >= 1) {
+        ?>
 	<center><form class="genvideobtn" action="" method="post">
 	<input type="hidden" value="<?php echo $code; ?>">
 		<input type="submit" name="genvideo" value="Generar Video">
 		</form></center>
-	<?php } ?>
+	<?php
+    } ?>
 	</div>
 <?php
 //
@@ -152,39 +138,37 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
 //
 ?>
 <center><div class="title"><a>Subir Un Clip Nuevo</a></div></center>
-	
+
 <?php
 if (isset($_POST['uploadvideo'])) {
-	$name = $_FILES ['file'] ['name'];
-			$tmp_name = $_FILES ['file'] ['tmp_name'];
-			$num = count($_FILES['file']['name']);
-			$location = "videos/$code/";
-			$getext = explode('.' , $name);
-				$filename = $getext[0];
-				$extension = $getext[1];
-	//$username = $_SESSION['username'];
-			//include 'config.php';
-			//$sqlcode = "SELECT code FROM users WHERE username='$username'";
-			//$resultcode = mysqli_query($db, $sqlcode);
-			//$rowcode = mysqli_fetch_assoc($resultcode);
-	//$newname = $_SESSION['code'] . ".mp4";
-	//$newname = "asd.mp4";
-			if ($num == 1) {
-				if (file_exists("videos/code/$name") or $name == "video.mp4") {
-				?><script>Alert.render("El video '<?php echo $name; ?>' ya existe. Por favor cambie el nombre de el video.", "");</script><?php
-			} else {
-				if (move_uploaded_file($tmp_name, $location.$name)) {
-				?><script>Alert.render("Se ha subido '<?php echo $name; ?>'.", "");</script><?php
-			} else {
-				?><script>Alert.render('No se pudo subir el video en el momento. Por favor intenta despues.', '');</script><?php
-			}
-				
-			}
-			} else {
-				?><script>Alert.render('Solo puedes subir un video a la vez.', '');</script><?php
-}
-}
-?>
+    $name = $_FILES ['file'] ['name'];
+    $tmp_name = $_FILES ['file'] ['tmp_name'];
+    $num = count($_FILES['file']['name']);
+    $location = "videos/$code/";
+    $getext = explode('.', $name);
+    $filename = $getext[0];
+    $extension = $getext[1];
+    //$username = $_SESSION['username'];
+    //include 'config.php';
+    //$sqlcode = "SELECT code FROM users WHERE username='$username'";
+    //$resultcode = mysqli_query($db, $sqlcode);
+    //$rowcode = mysqli_fetch_assoc($resultcode);
+    //$newname = $_SESSION['code'] . ".mp4";
+    //$newname = "asd.mp4";
+    if ($num == 1) {
+        if (file_exists("videos/code/$name") or $name == "video.mp4") {
+            ?><script>Alert.render("El video '<?php echo $name; ?>' ya existe. Por favor cambie el nombre de el video.", "");</script><?php
+        } else {
+            if (move_uploaded_file($tmp_name, $location.$name)) {
+                ?><script>Alert.render("Se ha subido '<?php echo $name; ?>'.", "");</script><?php
+            } else {
+                ?><script>Alert.render('No se pudo subir el video en el momento. Por favor intenta despues.', '');</script><?php
+            }
+        }
+    } else {
+        ?><script>Alert.render('Solo puedes subir un video a la vez.', '');</script><?php
+    }
+} ?>
 <center><form class="form" action="" method="post" enctype="multipart/form-data">
 <!--<input type="file" accept="video/mp4" name="file" id="file" class="inputfile" data-multiple-caption="{count} videos seleccionados" multiple />-->
 				<input type="file" accept="video/mp4,video/x-m4v,video/flv,video/mov,video/mpg" name="file" id="file" class="inputfile" data-multiple-caption="Solo puedes seleccionar un video" required/>
@@ -194,8 +178,8 @@ if (isset($_POST['uploadvideo'])) {
 <script src="custom-file-input.js"></script>
 <?php
 } else {
-	echo '<script type="text/javascript">
+    echo '<script type="text/javascript">
           window.location = "https://frank.fabregat.com.mx/cevideo/index.php"
       </script>';
 }
-	?>
+    ?>
