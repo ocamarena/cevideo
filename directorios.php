@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['title'] == "Coorporativo" or $_SESSION['titledev'] == "Coorporativo") {
+if ($_SESSION['title'] == "Corporativo" or $_SESSION['titledev'] == "Corporativo") {
     if (isset($_POST['deletevideo'])) {
         $nameofvideo = $_POST['video'];
         $code1 = $_POST['code'];

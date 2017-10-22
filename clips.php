@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['title'] == "Coorporativo" or $_SESSION['titledev'] == "Coorporativo") {
+if ($_SESSION['title'] == "Corporativo" or $_SESSION['titledev'] == "Corporativo") {
     ?>
 <title>Video Manager | Agregar Clips</title><?php
 ?>
@@ -54,7 +54,7 @@ if (isset($_POST['uploadvideo'])) {
                         $path = "videos/cc";
                         $destname = "City Centro";
                     } else {
-                        $path = "videos/$array[0]/coorporativo";
+                        $path = "videos/$array[0]/corporativo";
                         $destname = strtoupper($array[0]);
                         if (!file_exists($path)) {
                             mkdir($path, 0777, true);
@@ -114,7 +114,7 @@ if (isset($_POST['uploadvideo'])) {
                         $path = "videos/cc";
                         $destname = "City Centro";
                     } else {
-                        $path = "videos/$array[0]/coorporativo";
+                        $path = "videos/$array[0]/corporativo";
                         $destname = strtoupper($array[0]);
                         if (!file_exists($path)) {
                             mkdir($path, 0777, true);
@@ -148,7 +148,7 @@ if (isset($_POST['uploadvideo'])) {
                             $pathn = "videos/cc";
                             $destnamen = "City Centro";
                         } else {
-                            $pathn = "videos/$dest/coorporativo";
+                            $pathn = "videos/$dest/corporativo";
                             $destnamen = strtoupper($dest);
                             if (!file_exists($pathn)) {
                                 mkdir($pathn, 0777, true);

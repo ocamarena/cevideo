@@ -16,8 +16,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `title`, `code`, `email`, `new`) VALUES
 (1, 'ffabregat', '$2y$10$Q467C7SruOBnzkRD9mva9eWaKVzq9avIGflWpMtyZUdbC2xYZ/H5S', 'Desarrollador', 'ce000', 'frank@fabregat.com.mx', 'no'),
-(2, 'jcarrete', '$2y$10$II22.V9gS83TKkevBItnM.tZy24yW7i.P62UefZnM8DiliaK5Rmby', 'Coorporativo', 'n/a', 'jcarrete@hotelescity.com', 'yes'),
-(3, 'franciscof', '$2y$10$4jMFS38vrIZy5lNZl.dmDugjFRCiEfdOazRq3o6RJtfl4FEvSB/VO', 'Coorporativo', 'n/a', 'francisco@fabregat.com.mx', 'no');
+(2, 'jcarrete', '$2y$10$II22.V9gS83TKkevBItnM.tZy24yW7i.P62UefZnM8DiliaK5Rmby', 'Corporativo', 'n/a', 'jcarrete@hotelescity.com', 'yes'),
+(3, 'franciscof', '$2y$10$4jMFS38vrIZy5lNZl.dmDugjFRCiEfdOazRq3o6RJtfl4FEvSB/VO', 'Corporativo', 'n/a', 'francisco@fabregat.com.mx', 'no');
 
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);

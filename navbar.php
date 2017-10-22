@@ -9,7 +9,7 @@
     if ($_SESSION['title'] == "Administrador" or $_SESSION['titledev'] == "Administrador") {
         ?><li><a href="index.php?page=usuarios"><span class="icon-users"></span> Usuarios</a></li><?php
     }
-    if ($_SESSION['title'] == "Coorporativo" || $_SESSION['titledev'] == "Coorporativo") {
+    if ($_SESSION['title'] == "Corporativo" || $_SESSION['titledev'] == "Corporativo") {
         ?><li><a href="index.php?page=hoteles"><span class="icon-hotel"></span> Hoteles</a></li><?php
         ?><li><a href="index.php?page=clips"><span class="icon-video"></span> Agregar Clips</a></li><?php
         ?><li><a href="index.php?page=directorios"><span class="icon-folder"></span> Directorios</a></li><?php
@@ -25,8 +25,8 @@
         }
         if ($_SESSION['title'] == "Gerente") {
             echo "<div class='gerente'><a>" . $_SESSION['title'] . " (" . $_SESSION['code'] . ")";
-        } elseif ($_SESSION['title'] == "Coorporativo") {
-            echo "<div class='coorporativo'><a>" . $_SESSION['title'];
+        } elseif ($_SESSION['title'] == "Corporativo") {
+            echo "<div class='corporativo'><a>" . $_SESSION['title'];
         } elseif ($_SESSION['title'] == "Administrador") {
             echo "<div class='administrador'><a>" . $_SESSION['title'];
         } elseif ($_SESSION['title'] == "Desarrollador") {
@@ -36,10 +36,10 @@
             } else {
                 echo "<option value='Gerente'>Gerente (CE000)</option>";
             }
-            if ($_SESSION['titledev'] == "Coorporativo") {
-                echo "<div class='coorporativo2'><option value='Coorporativo' selected>Coorporativo</option></div>";
+            if ($_SESSION['titledev'] == "Corporativo") {
+                echo "<div class='corporativo2'><option value='Corporativo' selected>Corporativo</option></div>";
             } else {
-                echo "<option value='Coorporativo'>Coorporativo</option>";
+                echo "<option value='Corporativo'>Corporativo</option>";
             }
             if ($_SESSION['titledev'] == "Administrador") {
                 echo "<div class='administrador'><option value='Administrador' selected>Administrador</option></div>";

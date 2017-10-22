@@ -1,4 +1,4 @@
-ßfunction CustomAlert() {
+function CustomAlert() {
   this.render = function(dialog, redirect) {
     var winW = window.innerWidth;
     var winH = window.innerHeight;

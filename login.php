@@ -30,7 +30,7 @@
                 $_SESSION['code'] = $codefromdb;
             }
             if ($titlefromdb == "Desarrollador") {
-                $_SESSION['titledev'] = "Coorporativo";
+                $_SESSION['titledev'] = "Corporativo";
                 $_SESSION['code'] = $codefromdb;
             } ?><meta http-equiv="refresh" content="0"><?php
         } else {

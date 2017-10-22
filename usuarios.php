@@ -181,7 +181,7 @@ if ($_SESSION['title'] == "Administrador" or $_SESSION['titledev'] == "Administr
 	<!--<select name="title" onchange='CheckTitle(this.value);'>-->
    <div class="oneinput"><label>Titulo <a class="required">*</a></label><select name="title">
     <option value="Gerente">Gerente</option>
-    <option value="Coorporativo">Coorporativo</option>
+    <option value="Corporativo">Corporativo</option>
     <option value="Administrador">Administrador</option>
 	   </select></div>
 	<div class="oneinput"><label>Código de Hotel </label><input type="text" name="code" id="code" placeholder="Código de hotel"/></div>
@@ -219,12 +219,12 @@ if (mysqli_num_rows($resultgetgerentes) == 0) {
     } ?>
 </div>
 <?php
-    ?><div class="title"><a>Coorporativos</a></div><?php
+    ?><div class="title"><a>Corporativos</a></div><?php
 include 'config.php';
-    $sqlgetcoorp = "SELECT * FROM users WHERE title='Coorporativo' ORDER BY username ASC";
+    $sqlgetcoorp = "SELECT * FROM users WHERE title='Corporativo' ORDER BY username ASC";
     $resultgetcoorp = mysqli_query($db, $sqlgetcoorp); ?><div class="userslist"><?php
 if (mysqli_num_rows($resultgetcoorp) == 0) {
-        ?><div class='listitem'><div class='itempart'><a>No hay coorporativos registrados en este momento.</a></div></div><?php
+        ?><div class='listitem'><div class='itempart'><a>No hay corporativos registrados en este momento.</a></div></div><?php
     } else {
         while ($rowc = mysqli_fetch_assoc($resultgetcoorp)) {
             echo "<div class='listitem'><div class='itempart'><a>" . $rowc['username'] . "</a></div><div class='itempart'><a>" . $rowc['title'] . "</a></div><div class='itempartright'>"; ?><a href='index.php?page=usuarios&deleteuser=<?php echo $rowc['id']; ?>'><?php echo "<span class='icon-remove'></span></a></div></div>";

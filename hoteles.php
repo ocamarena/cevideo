@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['title'] == "Coorporativo" or $_SESSION['titledev'] == "Coorporativo") {
+if ($_SESSION['title'] == "Corporativo" or $_SESSION['titledev'] == "Corporativo") {
     ?>
 <title>Video Manager | Hoteles</title><?php
     if (isset($_GET['hotel'])) {
@@ -42,7 +42,7 @@ if (file_exists("videos/" . $_GET['hotel'] . "/video.mp4")) {
             }
             $noffiles2 = count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/$hotelc/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
             $noffiles = count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-            $nofcoorp = count(glob("videos/$hotel/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+            $nofcoorp = count(glob("videos/$hotel/corporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
             $nofhotel = count(glob("videos/$hotelc/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
             $nuni = count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
             if ($noffiles2 >= 1) {
@@ -61,21 +61,21 @@ if (file_exists("videos/" . $_GET['hotel'] . "/video.mp4")) {
             }
         } else {
             ?><center><div class="title"><a>No existen clips para este hotel</a></div></center><?php
-        } ?><div class="subtitle"><a>Clips para <?php echo strtoupper($_GET['hotel']); ?> de Coorporativo</a></div><?php
+        } ?><div class="subtitle"><a>Clips para <?php echo strtoupper($_GET['hotel']); ?> de Corporativo</a></div><?php
         if ($nofcoorp >= 1) {
-            foreach (glob("videos/$hotel/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+            foreach (glob("videos/$hotel/corporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
                 $nameoffile = basename($filename);
                 if ($nameoffile!='video.mp4') {
                     //$code = $_SESSION['code'];
                     echo "<div class='smallvideo2'>
 		<video height='120px' width='215px' controls><source src='$filename'></video>
 		<div class='videotitle2'><a>$nameoffile</a></div>
-		<a href='' title='Eliminar $nameoffile'><form action='' method='post'><input type='hidden' name='video' value='$nameoffile'><input type='hidden' name='code' value='$hotel/coorporativo'><input name='deletevideo' type='submit' class='icon-remove' value='&#59650'></form></a>
+		<a href='' title='Eliminar $nameoffile'><form action='' method='post'><input type='hidden' name='video' value='$nameoffile'><input type='hidden' name='code' value='$hotel/corporativo'><input name='deletevideo' type='submit' class='icon-remove' value='&#59650'></form></a>
 		</div><br>";
                 }
             }
         } else {
-            ?><center><div class="title"><a>No existen clips para <?php echo strtoupper($_GET['hotel']); ?> de Coorporativo</a></div></center><?php
+            ?><center><div class="title"><a>No existen clips para <?php echo strtoupper($_GET['hotel']); ?> de Corporativo</a></div></center><?php
         } ?><div class="subtitle"><a>Clips de <?php echo $hotelname; ?></a></div><?php
         if ($nofhotel >= 1) {
             foreach (glob("videos/$hotelc/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {

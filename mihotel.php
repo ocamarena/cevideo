@@ -50,7 +50,7 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
     $noffiles2 = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE)) + count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
     $noffiles = count(glob("videos/$code/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
     $nofhotel = count(glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
-    $nofcoorp = count(glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
+    $nofcoorp = count(glob("videos/$code/corporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
     $nuni = count(glob("videos/universal/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE));
     if ($noffiles2 >= 1) {
         ?><div class="subtitle"><a>Clips de Mi Hotel</a></div><?php
@@ -68,9 +68,9 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
             }
         } else {
             ?><center><div class="title"><a>No tienes clips para Tu Hotel</a></div></center><?php
-        } ?><div class="subtitle"><a>Clips para Tu Hotel de Coorporativo</a></div><?php
+        } ?><div class="subtitle"><a>Clips para Tu Hotel de Corporativo</a></div><?php
         if ($nofcoorp >= 1) {
-            foreach (glob("videos/$code/coorporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
+            foreach (glob("videos/$code/corporativo/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
                 $nameoffile = basename($filename);
                 if ($nameoffile!='video.mp4') {
                     //$code = $_SESSION['code'];
@@ -82,7 +82,7 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
                 }
             }
         } else {
-            ?><center><div class="title"><a>No existen clips para Tu Hotel de Coorporativo</a></div></center><?php
+            ?><center><div class="title"><a>No existen clips para Tu Hotel de Corporativo</a></div></center><?php
         } ?><div class="subtitle"><a>Clips de <?php echo $hotelname; ?></a></div><?php
         if ($nofhotel >= 1) {
             foreach (glob("videos/$hotel/{*.mp4,*.flv,*.mov,*.m4v,*.mpg}", GLOB_BRACE) as $filename) {
