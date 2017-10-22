@@ -381,6 +381,6 @@ if (isset($_POST['uploadvideo'])) {
 <?php
 } else {
         echo '<script type="text/javascript">
-          window.location = "https://frank.fabregat.com.mx/cevideo/index.php"
+          window.location = "http://54.183.167.135//cevideo/index.php"
       </script>';
     }
