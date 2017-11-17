@@ -38,7 +38,7 @@ if (isset($_POST['createnewpass'])) {
                         $sqlnew = "UPDATE users SET new='no' WHERE username='$sessionuser'";
                         $resultnew = mysqli_query($db, $sqlnew);
                     }
-                    echo "<script>Alert.render('Su contraseña ha sido cambiada.', 'http://54.183.167.135//cevideo/index.php?page=home')</script>";
+                    echo "<script>Alert.render('Su contraseña ha sido cambiada.', 'index.php?page=home')</script>";
                 } else {
                     echo "<script>Alert.render('Ha habido un error al cambiar su contraseña. Intente otra vez.', '')</script>";
                 }

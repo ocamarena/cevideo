@@ -8,6 +8,7 @@
     }
     if ($_SESSION['title'] == "Administrador" or $_SESSION['titledev'] == "Administrador") {
         ?><li><a href="index.php?page=usuarios"><span class="icon-users"></span> Usuarios</a></li><?php
+				?><li><a href="index.php?page=hotelesadmin"><span class="icon-hotel"></span> Hoteles</a></li><?php
     }
     if ($_SESSION['title'] == "Corporativo" || $_SESSION['titledev'] == "Corporativo") {
         ?><li><a href="index.php?page=hoteles"><span class="icon-hotel"></span> Hoteles</a></li><?php

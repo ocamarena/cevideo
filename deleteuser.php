@@ -1,5 +1,4 @@
 <?php
-echo "asdasdasd";
 if (isset($_POST['deleteuserprompt'])) {
     include 'config.php';
     $password = mysqli_real_escape_string($db, $_POST['prompt']);

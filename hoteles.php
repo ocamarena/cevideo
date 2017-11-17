@@ -208,7 +208,7 @@ if (file_exists("videos/" . $_GET['hotel'] . "/video.mp4")) {
     }
 } else {
     echo '<script type="text/javascript">
-          window.location = "http://54.183.167.135/cevideo/index.php"
+          window.location = "index.php"
       </script>';
 }
 ?>

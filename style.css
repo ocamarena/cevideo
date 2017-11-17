@@ -512,7 +512,15 @@
   border-bottom: 1px solid #07399A;
   width: 200px;
 }
-
+.adduserform input[type=number] {
+	-webkit-appearance: none;
+  border: none;
+  padding: 5px;
+  color: black;
+  font-size: 15px;
+  border-bottom: 1px solid #07399A;
+  width: 45px;
+}
 .required {
   color: red;
 }
@@ -541,7 +549,7 @@
   }
 }
 
-.adduserform input[type=text]:focus, .adduserform input[type=email]:focus {
+.adduserform input[type=text]:focus, .adduserform input[type=email]:focus, .adduserform input[type=number]:focus {
   /*-webkit-animation-name: growline;
     -webkit-animation-duration: 3s;
     animation-name: growline;

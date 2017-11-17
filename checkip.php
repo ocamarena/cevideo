@@ -2,7 +2,7 @@
 include 'config.php';
 if (isset($_GET['ip'])) {
     $ip = $_GET['ip'];
-    $sql = "SELECT code FROM hoteles WHERE ip='$ip'";
+    $sql = "SELECT code FROM hoteles WHERE ip-code='$ip'";
     $result = mysqli_query($db, $sql);
     if (mysqli_num_rows($result) == 0) {
         $code = "ERROR";
