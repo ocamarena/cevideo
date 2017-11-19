@@ -1,9 +1,9 @@
 <?php
 include 'config.php';
 if (isset($_GET['ip'])) {
-    $ip = $_GET['ip'];
-    $sql = "SELECT code FROM hoteles WHERE ip-code='$ip'";
-    $result = mysqli_query($db, $sql);
+    $ips = $_GET['ip'];
+    $sqli = "SELECT code FROM hoteles WHERE ipcode='$ips'";
+    $result = mysqli_query($db, $sqli);
     if (mysqli_num_rows($result) == 0) {
         $code = "ERROR";
     } else {
@@ -12,6 +12,7 @@ if (isset($_GET['ip'])) {
     }
     $array = array('code' => $code);
     echo json_encode($array);
+    //echo "Code: ".$code;
 } elseif (isset($_GET['version']) && isset($_GET['code'])) {
     include 'config.php';
     $version = $_GET['version'];
