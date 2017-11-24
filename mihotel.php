@@ -150,10 +150,7 @@ if (isset($_POST['uploadvideo'])) {
     $filename = $getext[0];
     $extension = $getext[1];
     if (is_dir($location) && is_writable($location)) {
-    echo "tiene permisos";
-} else {
-    echo "no tiene permisso";
-}
+
     //$username = $_SESSION['username'];
     //include 'config.php';
     //$sqlcode = "SELECT code FROM users WHERE username='$username'";
@@ -162,6 +159,10 @@ if (isset($_POST['uploadvideo'])) {
     //$newname = $_SESSION['code'] . ".mp4";
     //$newname = "asd.mp4";
     if ($num == 1) {
+      $path = "videos/".$code;
+      if (!file_exists($path)) {
+          mkdir($path, 0777, true);
+      }
         if (file_exists("videos/$code/$name") or $name == "video.mp4") {
             ?><script>Alert.render("El video '<?php echo $name; ?>' ya existe. Por favor cambie el nombre de el video.", "");</script><?php
         } else {
@@ -174,6 +175,9 @@ if (isset($_POST['uploadvideo'])) {
     } else {
         ?><script>Alert.render('Solo puedes subir un video a la vez.', '');</script><?php
     }
+  } else {
+      ?><script>Alert.render('No se pudo subir el video en el momento. Por favor intenta despues', '');</script><?php
+  }
 } ?>
 <center><form class="form" action="" method="post" enctype="multipart/form-data">
 <!--<input type="file" accept="video/mp4" name="file" id="file" class="inputfile" data-multiple-caption="{count} videos seleccionados" multiple />-->
