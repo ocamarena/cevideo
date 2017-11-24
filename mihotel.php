@@ -141,6 +141,7 @@ if (file_exists("videos/" . $rowcode['code'] . "/video.mp4")) {
 
 <?php
 if (isset($_POST['uploadvideo'])) {
+  $code = $_SESSION['code'];
     $name = $_FILES ['file'] ['name'];
     $tmp_name = $_FILES ['file'] ['tmp_name'];
     $num = count($_FILES['file']['name']);
@@ -148,6 +149,11 @@ if (isset($_POST['uploadvideo'])) {
     $getext = explode('.', $name);
     $filename = $getext[0];
     $extension = $getext[1];
+    if (is_dir($location) && is_writable($location)) {
+    echo "tiene permisos";
+} else {
+    echo "no tiene permisso";
+}
     //$username = $_SESSION['username'];
     //include 'config.php';
     //$sqlcode = "SELECT code FROM users WHERE username='$username'";
@@ -156,7 +162,7 @@ if (isset($_POST['uploadvideo'])) {
     //$newname = $_SESSION['code'] . ".mp4";
     //$newname = "asd.mp4";
     if ($num == 1) {
-        if (file_exists("videos/code/$name") or $name == "video.mp4") {
+        if (file_exists("videos/$code/$name") or $name == "video.mp4") {
             ?><script>Alert.render("El video '<?php echo $name; ?>' ya existe. Por favor cambie el nombre de el video.", "");</script><?php
         } else {
             if (move_uploaded_file($tmp_name, $location.$name)) {
