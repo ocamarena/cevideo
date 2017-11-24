@@ -149,6 +149,10 @@ if (isset($_POST['uploadvideo'])) {
     $getext = explode('.', $name);
     $filename = $getext[0];
     $extension = $getext[1];
+    $path = "videos/".$code;
+    if (!file_exists($path)) {
+        mkdir($path, 0777, true);
+    }
     if (is_writable($location)) {
 
     //$username = $_SESSION['username'];
@@ -159,10 +163,7 @@ if (isset($_POST['uploadvideo'])) {
     //$newname = $_SESSION['code'] . ".mp4";
     //$newname = "asd.mp4";
     if ($num == 1) {
-      $path = "videos/".$code;
-      if (!file_exists($path)) {
-          mkdir($path, 0777, true);
-      }
+
         if (file_exists("videos/$code/$name") or $name == "video.mp4") {
             ?><script>Alert.render("El video '<?php echo $name; ?>' ya existe. Por favor cambie el nombre de el video.", "");</script><?php
         } else {
