@@ -149,7 +149,7 @@ if (isset($_POST['uploadvideo'])) {
     $getext = explode('.', $name);
     $filename = $getext[0];
     $extension = $getext[1];
-    if (is_dir($location) && is_writable($location)) {
+    if (is_writable($location)) {
 
     //$username = $_SESSION['username'];
     //include 'config.php';
